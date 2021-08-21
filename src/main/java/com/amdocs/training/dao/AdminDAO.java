@@ -12,4 +12,6 @@ public interface AdminDAO {
 	List<Admin> findAll();
 
 	boolean deleteAdmin(int i);
+
+	Admin validateAdmin(String username, String password);
 }

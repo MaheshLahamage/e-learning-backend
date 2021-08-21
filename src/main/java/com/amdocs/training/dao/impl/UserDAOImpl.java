@@ -104,4 +104,34 @@ public class UserDAOImpl implements UserDAO {
 	public boolean updateUser(String s) {
 		return false;
 	}
+	public User validateUser(String username, String password) {
+		User user = new User();
+		String query = "select * from user where name= ?";
+		try {
+			Connection conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+				user.setUser_id(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setPhone_no(rs.getLong(3));
+				user.setEmail(rs.getString(4));
+				user.setAddress(rs.getString(5));
+				user.setReg_date(rs.getString(6));
+				user.setPassword(rs.getString(7));
+				user.setUpload_photo(rs.getString(8));
+			
+				System.out.println("pass:"+rs.getString(7));
+				if(password.equals(user.getPassword())) {
+					System.out.println("Valid!");
+					return user;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

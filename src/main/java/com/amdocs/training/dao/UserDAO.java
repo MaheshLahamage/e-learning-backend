@@ -12,4 +12,6 @@ public interface UserDAO {
 	List<User> findAll();
 
 	boolean deleteUser(int id);
+	
+	User validateUser(String username, String password);
 }

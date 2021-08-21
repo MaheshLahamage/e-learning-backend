@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import com.amdocs.training.dao.AdminDAO;
 import com.amdocs.training.db.DataSourceUtil;
 import com.amdocs.training.model.Admin;
+import com.amdocs.training.model.Admin;
 public class AdminDAOImpl implements AdminDAO {
 	
 	DataSource dataSource = DataSourceUtil.dataSource();
@@ -92,5 +93,31 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	public boolean updateAdmin(String s) {
 		return false;
+	}
+
+	public Admin validateAdmin(String username, String password) {
+		Admin admin = new Admin();
+		String query = "select * from admin where name= ?";
+		try {
+			Connection conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+				admin.setAdmin_id(rs.getInt(1));
+				admin.setName(rs.getString(2));
+				admin.setPassword(rs.getString(3));
+				admin.setEmail(rs.getString(4));
+				System.out.println("pass:"+rs.getString(3));
+				if(password.equals(admin.getPassword())) {
+					System.out.println("Valid!");
+					return admin;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

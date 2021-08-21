@@ -1,7 +1,7 @@
 package com.amdocs.training.model;
 
 public class Admin {
-	private int admin_id;
+	private Integer admin_id;
 	private String name;
 	private String password;
 	private String email;
@@ -9,7 +9,7 @@ public class Admin {
 	public Admin() {
 		System.out.println("Admin Object Created!");
 	}
-	public Admin(int admin_id, String name, String password, String email) {
+	public Admin(Integer admin_id, String name, String password, String email) {
 		super();
 		this.admin_id = admin_id;
 		this.name = name;
@@ -17,11 +17,11 @@ public class Admin {
 		this.email = email;
 	}
 
-	public int getAdmin_id() {
+	public Integer getAdmin_id() {
 		return admin_id;
 	}
 
-	public void setAdmin_id(int admin_id) {
+	public void setAdmin_id(Integer admin_id) {
 		this.admin_id = admin_id;
 	}
 

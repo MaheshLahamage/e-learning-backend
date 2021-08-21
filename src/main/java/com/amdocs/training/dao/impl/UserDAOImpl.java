@@ -61,7 +61,6 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 	public List<User> findAll() {
-		User user = new User();
 		List<User> list = new ArrayList<User>();
 		String sql = "select * from user";
 		try {
@@ -70,6 +69,7 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
+				User user = new User();
 				user.setUser_id(rs.getInt(1));
 				user.setName(rs.getString(2));
 				user.setPhone_no(rs.getString(3));

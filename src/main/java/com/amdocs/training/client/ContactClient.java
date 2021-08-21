@@ -7,7 +7,7 @@ public class ContactClient {
 public static void main(String[] args) {
 	
 		ContactDAO dao = new ContactDAOImpl();
-		Contact contact = new Contact(102, "Ankit", "ankit@gmail.com", 1234, "Message",2);
+		Contact contact = new Contact(null, 101, "rahul", "Rahul@gmail.com", "8324323433", "Message");
 		if(dao.saveContact(contact)) {
 		System.out.println("Contact Added Successfully");
 		}

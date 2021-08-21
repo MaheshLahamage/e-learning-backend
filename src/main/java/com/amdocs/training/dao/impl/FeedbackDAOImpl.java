@@ -10,7 +10,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.amdocs.training.dao.FeedbackDAO;
-import com.amdocs.training.db.DBUtil;
 import com.amdocs.training.db.DataSourceUtil;
 import com.amdocs.training.model.Feedback;
 public class FeedbackDAOImpl implements FeedbackDAO {
@@ -21,10 +20,10 @@ public class FeedbackDAOImpl implements FeedbackDAO {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, feedback.getUser_id());
-			ps.setString(2, feedback.getName());
-			ps.setString(3, feedback.getEmail());
-			ps.setInt(4, feedback.getF_id());
+			ps.setObject(1, feedback.getF_id());
+			ps.setInt(2, feedback.getUser_id());
+			ps.setString(3, feedback.getName());
+			ps.setString(4, feedback.getEmail());
 			ps.setString(5, feedback.getFeedback());
 			ps.executeUpdate();
 			return true;
@@ -44,10 +43,10 @@ public class FeedbackDAOImpl implements FeedbackDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				feedback.setUser_id(rs.getInt(1));
-				feedback.setName(rs.getString(2));
-				feedback.setEmail(rs.getString(3));
-				feedback.setF_id(rs.getInt(4));
+				feedback.setF_id(rs.getInt(1));
+				feedback.setUser_id(rs.getInt(2));
+				feedback.setName(rs.getString(3));
+				feedback.setEmail(rs.getString(4));
 				feedback.setFeedback(rs.getString(5));
 				return feedback;
 			}
@@ -57,7 +56,6 @@ public class FeedbackDAOImpl implements FeedbackDAO {
 		return null;
 	}
 	public List<Feedback> findAll() {
-		Feedback feedback = new Feedback();
 		List<Feedback> list = new ArrayList<Feedback>();
 		String sql = "select * from feedback";
 		try {
@@ -66,10 +64,11 @@ public class FeedbackDAOImpl implements FeedbackDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
-				feedback.setUser_id(rs.getInt(1));
-				feedback.setName(rs.getString(2));
-				feedback.setEmail(rs.getString(3));
-				feedback.setF_id(rs.getInt(4));
+				Feedback feedback = new Feedback();
+				feedback.setF_id(rs.getInt(1));
+				feedback.setUser_id(rs.getInt(2));
+				feedback.setName(rs.getString(3));
+				feedback.setEmail(rs.getString(4));
 				feedback.setFeedback(rs.getString(5));
 				list.add(feedback);
 			}

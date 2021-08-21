@@ -7,7 +7,7 @@ public class FeedbackClient {
 public static void main(String[] args) {
 	
 		FeedbackDAO dao = new FeedbackDAOImpl();
-		Feedback feedback = new Feedback(101,"ankit","ankit@gmail.com",1,"good");
+		Feedback feedback = new Feedback(null,101,"ankit","ankit@gmail.com","good");
 		if(dao.saveFeedback(feedback)) {
 		System.out.println("Feedback Added Successfully");
 		}

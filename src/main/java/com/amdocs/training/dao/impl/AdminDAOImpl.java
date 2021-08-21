@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import com.amdocs.training.dao.AdminDAO;
 import com.amdocs.training.db.DataSourceUtil;
 import com.amdocs.training.model.Admin;
-import com.amdocs.training.model.Admin;
 public class AdminDAOImpl implements AdminDAO {
 	
 	DataSource dataSource = DataSourceUtil.dataSource();
@@ -21,7 +20,7 @@ public class AdminDAOImpl implements AdminDAO {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, admin.getAdmin_id());
+			ps.setObject(1, admin.getAdmin_id());
 			ps.setString(2, admin.getName());
 			ps.setString(3, admin.getPassword());
 			ps.setString(4, admin.getEmail());
@@ -35,7 +34,6 @@ public class AdminDAOImpl implements AdminDAO {
 
 	public Admin getAdminById(int id) {
 
-		Admin admin = new Admin();
 		String query = "select * from admin where admin_id= ?";
 		try {
 			Connection conn = dataSource.getConnection();
@@ -43,6 +41,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
+				Admin admin = new Admin();
 				admin.setAdmin_id(rs.getInt(1));
 				admin.setName(rs.getString(2));
 				admin.setPassword(rs.getString(3));
@@ -107,9 +106,9 @@ public class AdminDAOImpl implements AdminDAO {
 			while(rs.next()) {
 				admin.setAdmin_id(rs.getInt(1));
 				admin.setName(rs.getString(2));
-				admin.setPassword(rs.getString(3));
-				admin.setEmail(rs.getString(4));
-				System.out.println("pass:"+rs.getString(3));
+				admin.setEmail(rs.getString(3));
+				admin.setPassword(rs.getString(4));
+				System.out.println("pass:"+rs.getString(4));
 				if(password.equals(admin.getPassword())) {
 					System.out.println("Valid!");
 					return admin;

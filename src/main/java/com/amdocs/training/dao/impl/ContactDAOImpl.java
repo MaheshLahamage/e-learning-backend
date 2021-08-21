@@ -20,12 +20,12 @@ public class ContactDAOImpl implements ContactDAO {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, contact.getUser_id());
-			ps.setString(2, contact.getName());
-			ps.setString(3, contact.getEmail());
-			ps.setLong(4, contact.getPhone_no());
-			ps.setString(5, contact.getMessage());
-			ps.setInt(6, contact.getContact_id());
+			ps.setObject(1, contact.getContact_id());
+			ps.setInt(2, contact.getUser_id());
+			ps.setString(3, contact.getName());
+			ps.setString(4, contact.getEmail());
+			ps.setString(5, contact.getPhone_no());
+			ps.setString(6, contact.getMessage());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -44,12 +44,12 @@ public class ContactDAOImpl implements ContactDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				contact.setUser_id(rs.getInt(1));
-				contact.setName(rs.getString(2));
-				contact.setEmail(rs.getString(3));
-				contact.setPhone_no(rs.getLong(4));
-				contact.setMessage(rs.getString(5));
-				contact.setContact_id(rs.getInt(6));
+				contact.setContact_id(rs.getInt(1));
+				contact.setUser_id(rs.getInt(2));
+				contact.setName(rs.getString(3));
+				contact.setEmail(rs.getString(4));
+				contact.setPhone_no(rs.getString(5));
+				contact.setMessage(rs.getString(6));
 				return contact;
 			}
 		} catch (SQLException e) {
@@ -58,7 +58,6 @@ public class ContactDAOImpl implements ContactDAO {
 		return null;
 	}
 	public List<Contact> findAll() {
-		Contact contact = new Contact();
 		List<Contact> list = new ArrayList<Contact>();
 		String sql = "select * from contact";
 		try {
@@ -67,12 +66,13 @@ public class ContactDAOImpl implements ContactDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
-				contact.setUser_id(rs.getInt(1));
-				contact.setName(rs.getString(2));
-				contact.setEmail(rs.getString(3));
-				contact.setPhone_no(rs.getLong(4));
-				contact.setMessage(rs.getString(5));
-				contact.setContact_id(rs.getInt(6));
+				Contact contact = new Contact();
+				contact.setContact_id(rs.getInt(1));
+				contact.setUser_id(rs.getInt(2));
+				contact.setName(rs.getString(3));
+				contact.setEmail(rs.getString(4));
+				contact.setPhone_no(rs.getString(5));
+				contact.setMessage(rs.getString(6));
 				list.add(contact);
 			}
 			return list;

@@ -10,7 +10,7 @@ public class CourseClient {
 		
 		CourseDAO dao = new CourseDAOImpl();
 		
-		Course course = new Course(3001, "Design Patterns", 3500, "GOF and Sun Design Patterns", "video.mp4");
+		Course course = new Course(1, "Design Patterns", 3500, "GOF and Sun Design Patterns", "video.mp4");
 		if(dao.saveCourse(course)) {
 			System.out.println("Course Added Successfully");
 			}

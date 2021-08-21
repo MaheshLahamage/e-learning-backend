@@ -22,7 +22,7 @@ public class CourseDAOImpl implements CourseDAO {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setInt(1, course.getCourse_id());
+			ps.setObject(1, course.getCourse_id());
 			ps.setString(2, course.getC_name());
 			ps.setDouble(3, course.getC_fees());
 			ps.setString(4, course.getC_desp());
@@ -59,7 +59,6 @@ public class CourseDAOImpl implements CourseDAO {
 		return null;
 	}
 	public List<Course> findAll() {
-		Course course = new Course();
 		List<Course> list = new ArrayList<Course>();
 		String sql = "select * from course";
 		try {
@@ -68,6 +67,7 @@ public class CourseDAOImpl implements CourseDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
+				Course course = new Course();
 				course.setCourse_id(rs.getInt(1));
 				course.setC_name(rs.getString(2));
 				course.setC_fees(rs.getDouble(3));

@@ -11,7 +11,7 @@ public class DataSourceUtil {
 		try {
 			BasicDataSource ds = new BasicDataSource();
 			ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-			ds.setUrl("jdbc:mysql://localhost:3306/batch_2b");
+			ds.setUrl("jdbc:mysql://localhost:3306/project");
 			ds.setUsername("root");
 			ds.setPassword("root");
 			return ds;

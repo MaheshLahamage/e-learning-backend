@@ -1,18 +1,19 @@
 package com.amdocs.training.model;
 
 public class User {
-	private int user_id;
+	private Integer user_id;
 	private String name;
-	private long phone_no;
+	private String phone_no;
 	private String email;
 	private String address;
 	private String reg_date;
-	private String password;
 	private String upload_photo;
+	private String password;
 	
 	public User() {System.out.println("created");}
-	public User(int user_id, String name, long phone_no, String email, String address, String reg_date, String password,
-			String upload_photo) {
+
+	public User(Integer user_id, String name, String phone_no, String email, String address, String reg_date,
+			String upload_photo, String password) {
 		super();
 		this.user_id = user_id;
 		this.name = name;
@@ -20,15 +21,17 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.reg_date = reg_date;
-		this.password = password;
 		this.upload_photo = upload_photo;
+		this.password = password;
 	}
 
-	public int getUser_id() {
+	
+
+	public Integer getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
 
@@ -40,11 +43,11 @@ public class User {
 		this.name = name;
 	}
 
-	public long getPhone_no() {
+	public String getPhone_no() {
 		return phone_no;
 	}
 
-	public void setPhone_no(long phone_no) {
+	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
 	}
 
@@ -72,6 +75,14 @@ public class User {
 		this.reg_date = reg_date;
 	}
 
+	public String getUpload_photo() {
+		return upload_photo;
+	}
+
+	public void setUpload_photo(String upload_photo) {
+		this.upload_photo = upload_photo;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -80,18 +91,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getUpload_photo() {
-		return upload_photo;
-	}
-
-	public void setUpload_photo(String upload_photo) {
-		this.upload_photo = upload_photo;
-	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", name=" + name + ", phone_no=" + phone_no + ", email=" + email
-				+ ", address=" + address + ", reg_date=" + reg_date + ", password=" + password + ", upload_photo="
-				+ upload_photo + "]";
+				+ ", address=" + address + ", reg_date=" + reg_date + ", upload_photo=" + upload_photo + ", password="
+				+ password + "]";
 	}
+	
 	
 }

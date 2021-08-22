@@ -22,7 +22,7 @@ class FeedbackDAOJUnitTest {
 	}
 	@Test
 	public void test_insert_feedback_success() {
-		Feedback u =  new Feedback(103,"Rahul","Rahul@gmail.com",2,"Excellent");
+		Feedback u =  new Feedback(null,101,"ankit","ankit@gmail.com","good");
 		assertEquals(true, dao.saveFeedback(u));
 
 	}

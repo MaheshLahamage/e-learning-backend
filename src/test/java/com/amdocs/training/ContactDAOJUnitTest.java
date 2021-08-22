@@ -23,7 +23,7 @@ class ContactDAOJUnitTest {
 	}
 	@Test
 	public void test_insert_contact_success() {
-		Contact c =  new Contact(103, "Rahul", "Rahul@gmail.com", 324342343L, "Message",2);
+		Contact c =  new Contact(null, 101, "rahul", "Rahul@gmail.com", "8324323433", "Message");
 		assertEquals(true, dao.saveContact(c));
 
 	}

@@ -22,7 +22,7 @@ class UserDAOJUnitTest {
 	}
 	@Test
 	public void test_insert_user_success() {
-		User u =  new User(120, "Raj", 9586234712L,"rahul@gmail.com","banglore","2021-12-21","rahul","img1.jpg");
+		User u =  new User(null, "Rahul", "9586234712" ,"rahul@gmail.com","banglore","2021-12-21","rahul","img1.jpg");
 		assertEquals(true, dao.saveUser(u));
 
 	}

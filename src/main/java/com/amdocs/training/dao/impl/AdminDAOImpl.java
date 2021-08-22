@@ -54,7 +54,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return null;
 	}
 	public List<Admin> findAll() {
-		Admin admin = new Admin();
 		List<Admin> list = new ArrayList<Admin>();
 		String sql = "select * from admin";
 		try {
@@ -63,6 +62,7 @@ public class AdminDAOImpl implements AdminDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while(rs.next()) {
+				Admin admin = new Admin();
 				admin.setAdmin_id(rs.getInt(1));
 				admin.setName(rs.getString(2));
 				admin.setPassword(rs.getString(3));

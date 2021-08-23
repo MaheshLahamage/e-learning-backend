@@ -33,8 +33,7 @@ public class EnrollDAOImpl implements EnrollDAO {
 	}
 
 	public List<Course> getEnrolledCourses(int id) {
-		Enroll enroll = new Enroll();
-		Course course = new Course();
+		
 		List<Course> list = new ArrayList<Course>();
 		CourseDAO c_dao = new CourseDAOImpl();
 		String query = "select * from enroll where user_id= ?";
@@ -44,11 +43,12 @@ public class EnrollDAOImpl implements EnrollDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				enroll.setUser_id(rs.getInt(1));
+				Course course = new Course();
 				course = c_dao.getCourseById(rs.getInt(2));
+				System.out.println(course+""+rs.getInt(2));
 				list.add(course);
-				return list;
 			}
+			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

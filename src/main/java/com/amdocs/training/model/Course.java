@@ -56,5 +56,12 @@ public class Course {
 		return "Course [course_id=" + course_id + ", c_name=" + c_name + ", c_fees=" + c_fees + ", c_desp=" + c_desp
 				+ ", c_resource=" + c_resource + "]";
 	}
-	
+	 @Override
+	    public boolean equals(Object anObject) {
+	        if (!(anObject instanceof Course)) {
+	            return false;
+	        }
+	        Course otherCourses = (Course)anObject;
+	        return otherCourses.getCourse_id().equals(getCourse_id());
+	    }
 }

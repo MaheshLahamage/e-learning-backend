@@ -22,8 +22,8 @@ public class AdminDAOImpl implements AdminDAO {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setObject(1, admin.getAdmin_id());
 			ps.setString(2, admin.getName());
-			ps.setString(3, admin.getPassword());
-			ps.setString(4, admin.getEmail());
+			ps.setString(3, admin.getEmail());
+			ps.setString(4, admin.getPassword());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -44,8 +44,8 @@ public class AdminDAOImpl implements AdminDAO {
 				Admin admin = new Admin();
 				admin.setAdmin_id(rs.getInt(1));
 				admin.setName(rs.getString(2));
-				admin.setPassword(rs.getString(3));
-				admin.setEmail(rs.getString(4));
+				admin.setEmail(rs.getString(3));
+				admin.setPassword(rs.getString(4));
 				return admin;
 			}
 		} catch (SQLException e) {
@@ -65,8 +65,9 @@ public class AdminDAOImpl implements AdminDAO {
 				Admin admin = new Admin();
 				admin.setAdmin_id(rs.getInt(1));
 				admin.setName(rs.getString(2));
-				admin.setPassword(rs.getString(3));
-				admin.setEmail(rs.getString(4));
+				admin.setEmail(rs.getString(3));
+				admin.setPassword(rs.getString(4));
+				System.out.println("----"+admin);
 				list.add(admin);
 			}
 			return list;

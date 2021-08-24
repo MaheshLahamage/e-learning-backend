@@ -3,18 +3,19 @@ package com.amdocs.training.model;
 public class Admin {
 	private Integer admin_id;
 	private String name;
-	private String password;
 	private String email;
+	private String password;
 	
 	public Admin() {
 		System.out.println("Admin Object Created!");
 	}
-	public Admin(Integer admin_id, String name, String password, String email) {
+
+	public Admin(Integer admin_id, String name, String email, String password) {
 		super();
 		this.admin_id = admin_id;
 		this.name = name;
-		this.password = password;
 		this.email = email;
+		this.password = password;
 	}
 
 	public Integer getAdmin_id() {
@@ -33,6 +34,14 @@ public class Admin {
 		this.name = name;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -41,14 +50,9 @@ public class Admin {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
+	@Override
+	public String toString() {
+		return "Admin [admin_id=" + admin_id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	
 	
 }
